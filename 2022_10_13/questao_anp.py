@@ -10,18 +10,16 @@ diretorio_dados = diretorio_app + '\\serie_historica_anp'
 # Montando o diretório onde os dados estatisticos serão salvos
 diretorio_estat = diretorio_app + '\\dados_estatisticos'
 
-# Criando o diretório onde os dados serão salvos
-try:
-    os.mkdir(diretorio_estat)
-except:
-    print('\nDiretório já existe...')
-
 # Montando uma lista com os arquivos do diretório de dados
 try:
     lista_arquivos = os.listdir(diretorio_dados)
 except:
     print(f'\nErro na Leitura do Diretório...{sys.exc_info()[0]}\n')
     sys.exit()
+else:
+    if len(lista_arquivos) == 0:
+        print('\nO Diretório está vazio...\n')
+        sys.exit()
 
 # Lendo os arquivos
 lista_dados = list()
@@ -34,6 +32,12 @@ for arquivo in lista_arquivos:
         lista_dados.extend(lista_auxiliar) 
     else:
         print(f'Erro na Leitura...{erro}')
+
+# Criando o diretório onde os dados serão salvos
+try:
+    os.mkdir(diretorio_estat)
+except:
+    print('\nDiretório já existe...\n')
 
 # Salvando os dados lidos
 print('\nSalvando Arquivo:')
