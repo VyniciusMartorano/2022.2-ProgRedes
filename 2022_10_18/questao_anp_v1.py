@@ -14,6 +14,9 @@ exibe_Titulo('Lendo o Diretório de Dados...', COR_TITULO)
 t_inicial = datetime.now()
 try:
     lista_arquivos = os.listdir(DIR_DADOS)
+except FileNotFoundError:
+    print(f'{COR_ERRO}ERRO: Diretório Não Existe...{COR_PADRAO}\n')
+    sys.exit()
 except:
     print(f'{COR_ERRO}ERRO: Leitura do Diretório...{sys.exc_info()[0]}{COR_PADRAO}\n')
     sys.exit()
