@@ -1,4 +1,4 @@
-import socket, sys
+import socket
 
 host  = input('\nInforme o nome do HOST ou URL do site: ')
 
@@ -10,7 +10,7 @@ requisicao = f'GET / HTTP/1.1\r\nHost: {host}\r\nAccept: text/html\r\n\r\n'
 alvo.sendall(requisicao.encode())
 
 while True:
-    dados = alvo.recv(10240)
+    dados = alvo.recv(1024)
 
     if not dados: break
 
